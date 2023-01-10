@@ -1,0 +1,19 @@
+# @param {Integer[]} nums
+# @param {Integer} target
+# @return {Integer[]}
+def two_sum(nums, target)
+    dict = {}
+    nums.each_with_index do |num, index|
+        dict[index] = num
+    end
+    
+    for index in 0 ... dict.keys.size 
+        nextIndex = index + 1
+        for nextIndex in nextIndex ... dict.keys.size 
+            if dict[index] + dict[nextIndex] == target
+                return [index, nextIndex]
+            end
+        end
+    end
+    return []
+end
