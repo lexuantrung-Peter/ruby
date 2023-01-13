@@ -7,13 +7,11 @@ def two_sum(nums, target)
         dict[index] = num
     end
     
-    for index in 0 ... dict.keys.size 
-        nextIndex = index + 1
-        for nextIndex in nextIndex ... dict.keys.size 
-            if dict[index] + dict[nextIndex] == target
-                return [index, nextIndex]
-            end
+    dict.keys.size.times do |index| 
+        next_index = index + 1
+        for next_index in next_index ... dict.keys.size 
+            return [index, next_index] if dict[index] + dict[next_index] == target
         end
     end
-    return []
+    []
 end
