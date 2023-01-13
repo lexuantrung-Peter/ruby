@@ -3,10 +3,8 @@
 def most_words_found(sentences)
     max = 0
     sentences.each do |s|
-      length = s.split(' ').length 
-       if max < length
-          max = length
-       end
+        length = s.split(' ').length 
+        max = length if max < length
     end
-    max  
+    max
 end
