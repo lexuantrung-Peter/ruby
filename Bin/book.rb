@@ -24,21 +24,16 @@ class Book
     @image = attributes['image']
     @url = attributes['url']
     @pdf = attributes['pdf']
-
   end
+
   def search_books(book_name)
     page = 1
     books = []
-
     loop do
-
       data = search_keyword(book_name, page)
       data['books'].each do |book|
         isbn = book['isbn13']
-        b = get_book_detail(isbn)
-        puts b.title
-        books << b
-        export_book_detail_csv(books.flatten)
+        books << get_book_detail(isbn)
       end
       if data['books'].empty?
         break
@@ -46,8 +41,8 @@ class Book
         page += 1
       end
     end
+    export_book_detail_csv(books.flatten, book_name)
   end
-
 end
 
 book_name = ARGV[0]
