@@ -1,0 +1,17 @@
+# @param {Integer[]} nums
+# @param {Integer} target
+# @return {Integer[]}
+def two_sum(nums, target)
+    dict = {}
+    nums.each_with_index do |num, index|
+        dict[index] = num
+    end
+    
+    dict.keys.size.times do |index| 
+        next_index = index + 1
+        for next_index in next_index ... dict.keys.size 
+            return [index, next_index] if dict[index] + dict[next_index] == target
+        end
+    end
+    []
+end
