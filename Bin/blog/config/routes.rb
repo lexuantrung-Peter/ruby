@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'comments/create'
   devise_for :users do 
     delete '/users/sign_out' => 'devise/sessions#destroy'
   end
@@ -7,4 +8,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+  resources :posts do
+    resources :comments, only: [:create]
+  end
 end
