@@ -1,0 +1,13 @@
+<h1>Welcome to blog</h1>
+<% if user_signed_in? %>
+  <%= form_tag destroy_user_session_path, method: :delete do %>
+  <%= submit_tag "Sign out" %>
+  <%= link_to "List posts", posts_path %>
+
+<% end %>
+<% else %>
+  <%= form_tag new_user_session_path, method: :get do %>
+  <%= submit_tag "Sign in home" %>
+<% end %>
+<% end %>
+
