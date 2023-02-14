@@ -1,13 +1,32 @@
 <h1>Welcome to blog</h1>
+  <%= form_tag root_path, method: :get do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+      <%= submit_tag "Search", name: nil %>
+    <% end %>
 <% if user_signed_in? %>
   <%= form_tag destroy_user_session_path, method: :delete do %>
-  <%= submit_tag "Sign out" %>
-  <%= link_to "List posts", posts_path %>
-
-<% end %>
+    <%= submit_tag "Sign out" %>
+    <%= link_to "List posts", posts_path %>
+  
+    
+  <% end %>
 <% else %>
   <%= form_tag new_user_session_path, method: :get do %>
-  <%= submit_tag "Sign in home" %>
+    <%= submit_tag "Sign in " %>
+  <% end %>
 <% end %>
+
+
+
+<h1>Posts</h1>
+
+<% if @posts.present? %>
+  <% @posts.each do |post| %>
+    <%= post.title %>
+  <% end %>
+<% else %>
+  No results found.
 <% end %>
+
+<%= link_to "New post", new_post_path %>
 
