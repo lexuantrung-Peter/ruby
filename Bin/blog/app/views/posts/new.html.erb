@@ -1,0 +1,12 @@
+<h1>New post</h1>
+<% if cannot? :create, Post %>
+  <%= render 'shared/need_to_login' %>
+<% else %>
+<%= render "form", post: @post %>
+
+<br>
+
+<div>
+  <%= link_to "Back to posts", posts_path %>
+</div>
+<% end %>

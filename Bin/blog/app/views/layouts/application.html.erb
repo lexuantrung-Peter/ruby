@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+ 
+
+    <% if user_signed_in? %>
+      <%= form_tag destroy_user_session_path, method: :delete do %>
+        <%= submit_tag "Sign out home" %>
+        
+      <% end %>
+    <% else %>
+      <%= link_to 'Sign in', new_user_session_path %>
+    <% end %>
+   
+    <%= yield %>
+  </body>
+</html>
